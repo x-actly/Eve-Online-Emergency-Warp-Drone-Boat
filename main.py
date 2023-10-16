@@ -36,7 +36,7 @@ start_x, start_y = 232, 430
 end_x, end_y = 348, 902  
 #image_paths = ['img/neut_4k.png', 'img/red_4k.png']  
 image_paths = ['img/neut_1080p.png', 'img/red_1080p.png']
-confidence_level = 0.91 
+confidence_level = 0.84 
 
 
 while True:
