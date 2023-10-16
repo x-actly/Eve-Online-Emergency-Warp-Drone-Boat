@@ -29,12 +29,12 @@ confidence_level = 0.91  # Beispielwert für die Intensität der Bilderkennung
 
 
 while True:
-    
+
     random_intervall = random.uniform(1, 2)
 
     found = find_and_execute(image_paths, perform_action, start_x, start_y, end_x, end_y, confidence_level)
     time.sleep(random_intervall)
-    print("local clear!", random_intervall)
+    print("local clear!!!", random_intervall)
     if found:
         perform_action()
         break
