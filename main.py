@@ -1,5 +1,4 @@
 import pyautogui, sys, random, time, pygame, time
-from playsound import playsound
 from datetime import datetime
 from functions import emergency_warp
 
@@ -28,13 +27,13 @@ def perform_action():
         while pygame.mixer.music.get_busy():
             continue
         alarm_played = True
-        emergency_warp(1703, 1068)
+        emergency_warp(659, 340)
 
     sys.exit()
 
 
-start_x, start_y = 307, 704  
-end_x, end_y = 476, 1307  
+start_x, start_y = 232, 430  
+end_x, end_y = 348, 902  
 #image_paths = ['img/neut_4k.png', 'img/red_4k.png']  
 image_paths = ['img/neut_1080p.png', 'img/red_1080p.png']
 confidence_level = 0.91 
