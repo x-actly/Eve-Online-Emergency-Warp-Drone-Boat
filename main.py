@@ -8,8 +8,8 @@ alarm_played = False
 additional_thread_running = True
 
 # Detection Area
-start_x, start_y = 357, 705  
-end_x, end_y = 487, 1309
+start_x, start_y = 357, 343  
+end_x, end_y = 487, 948
 
 # safespot
 safe_x, safe_y = 1700, 1068
@@ -18,7 +18,9 @@ safe_x, safe_y = 1700, 1068
 targeting_x, targeting_y = 2048, 804
 
 # Image Path
-image_paths = ['img/neut_4k.png', 'img/red_4k.png', 'img/-5.png', 'img/-10.png']  
+image_paths = ['img/neut_4k.png', 'img/red_4k.png', 'img/-5_1440p.png', 'img/-10_1440p.png', 
+               'img/neut_1080p.png', 'img/red_1080p.png', 'img/-5_1080p.png', 'img/-5_1440p.png', 
+               'img/-10_1080p.png', 'img/-10_1440p.png']  
 #image_paths = ['img/neut_1080p.png', 'img/red_1080p.png', 'img/-5.png', 'img/-10.png']
 
 # Confidence Lvl - Laptop = 0.84 at 1080p, PC = 0.85 at 1440p
