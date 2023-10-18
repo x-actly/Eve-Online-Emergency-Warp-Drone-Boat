@@ -119,7 +119,7 @@ def additional_thread_function():
         
         time.sleep(random_interval)
         print(f"{current_time} - targeting")
-        #targeting(targeting_x, targeting_y)
+        targeting(targeting_x, targeting_y)
 
 
 
