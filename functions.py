@@ -11,7 +11,7 @@ def targeting(x, y):
     time.sleep(1)
     pyautogui.click(button='left')
     pyautogui.keyUp('ctrl')
-    time.sleep(3)
+    time.sleep(10)
     pyautogui.press('f')
 
 
@@ -43,7 +43,7 @@ def emergency_warp(x, y):
         # pyautogui.mouseUp()
         # time.sleep(5)
         ######### warp ##############
-        pyautogui.press('f3') 
+        #pyautogui.press('f3') 
         time.sleep(random_time)
         pyautogui.moveTo(x, y)
         pyautogui.mouseDown()

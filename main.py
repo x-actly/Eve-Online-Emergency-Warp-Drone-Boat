@@ -9,15 +9,15 @@ alarm_played = False
 additional_thread_running = True
 
 # Detection Area
-start_x, start_y = 370, 725
-end_x, end_y = 527, 1323
+start_x, start_y = 150, 652 
+end_x, end_y = 354, 988
 
 # safespot
-safe_x, safe_y = 2273, 245
+safe_x, safe_y = 1096, 271
 safe_window_size = 6  # Fenstergröße um den Mittelpunkt in jede Richtung
 
 # Koordinaten des Targeting-Bereichs
-targeting_x, targeting_y = 1185, 1298
+targeting_x, targeting_y = 1054, 666
 targeting_window_size = 6  # Fenstergröße um den Mittelpunkt in jede Richtung
 
 # Funktion zum Schließen der Fenster
@@ -95,11 +95,11 @@ root.mainloop()
 # Image Path
 image_paths = ['img/neut_4k.png', 'img/red_4k.png', 'img/-5_1440p.png', 'img/-10_1440p.png', 
                'img/neut_1080p.png', 'img/red_1080p.png', 'img/-5_1080p.png', 'img/-5_1440p.png', 
-               'img/-10_1080p.png', 'img/-10_1440p.png']  
+               'img/-10_1080p.png', 'img/-10_1440p.png', 'img/neut_1080p_red.png']  
 #image_paths = ['img/neut_1080p.png', 'img/red_1080p.png', 'img/-5.png', 'img/-10.png']
 
 # Confidence Lvl - Laptop = 0.84 at 1080p, PC = 0.85 at 1440p
-confidence_level = 0.85 
+confidence_level = 0.84 
 
 def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_y, confidence):
     search_region = (start_x, start_y, end_x - start_x, end_y - start_y)
@@ -119,7 +119,7 @@ def additional_thread_function():
         
         time.sleep(random_interval)
         print(f"{current_time} - targeting")
-        targeting(targeting_x, targeting_y)
+        #targeting(targeting_x, targeting_y)
 
 
 
