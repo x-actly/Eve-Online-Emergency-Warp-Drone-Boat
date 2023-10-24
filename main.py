@@ -9,15 +9,15 @@ alarm_played = False
 additional_thread_running = True
 
 # Detection Area
-start_x, start_y = 150, 652 
-end_x, end_y = 354, 988
+start_x, start_y = 59, 79
+end_x, end_y = 266, 994
 
 # safespot
-safe_x, safe_y = 1096, 271
+safe_x, safe_y = 1165, 243      
 safe_window_size = 6  # Fenstergröße um den Mittelpunkt in jede Richtung
 
 # Koordinaten des Targeting-Bereichs
-targeting_x, targeting_y = 1054, 666
+targeting_x, targeting_y = 1075, 668
 targeting_window_size = 6  # Fenstergröße um den Mittelpunkt in jede Richtung
 
 # Funktion zum Schließen der Fenster
@@ -112,14 +112,14 @@ def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_
     return False
 
 def additional_thread_function():
-    random_interval = random.uniform(60, 70)
+    random_interval = random.uniform(120, 130)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     global additional_thread_running
     while additional_thread_running:
         
         time.sleep(random_interval)
         print(f"{current_time} - targeting")
-        #targeting(targeting_x, targeting_y)
+        targeting(targeting_x, targeting_y)
 
 
 

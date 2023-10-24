@@ -43,7 +43,7 @@ def emergency_warp(x, y):
         # pyautogui.mouseUp()
         # time.sleep(5)
         ######### warp ##############
-        #pyautogui.press('f3') 
+        pyautogui.press('f3') 
         time.sleep(random_time)
         pyautogui.moveTo(x, y)
         pyautogui.mouseDown()
