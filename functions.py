@@ -11,7 +11,9 @@ def targeting(x, y):
     time.sleep(1)
     pyautogui.click(button='left')
     pyautogui.keyUp('ctrl')
-    time.sleep(10)
+    time.sleep(15)
+    pyautogui.press('f1')
+    time.sleep(1)
     pyautogui.press('f')
 
 
@@ -27,12 +29,11 @@ def emergency_warp(x, y):
 
 
         ######### drones in #########
-        # time.sleep(1)
-        # pyautogui.keyDown('shift')
-        # pyautogui.press('r')
-        # time.sleep(1)
-        # pyautogui.keyUp('shift')
-        # time.sleep(5)
+        #time.sleep(1)
+        pyautogui.keyDown('shift')
+        pyautogui.press('r')
+        time.sleep(1)
+        pyautogui.keyUp('shift')
         ######### align #############
         # time.sleep(random_time)
         # pyautogui.press('f3')

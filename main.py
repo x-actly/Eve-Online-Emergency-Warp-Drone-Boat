@@ -14,91 +14,88 @@ end_x, end_y = 266, 994
 
 # safespot
 safe_x, safe_y = 1165, 243      
-safe_window_size = 6  # Fenstergröße um den Mittelpunkt in jede Richtung
+safe_window_size = 6  
 
-# Koordinaten des Targeting-Bereichs
+# targeting spot
 targeting_x, targeting_y = 1075, 668
-targeting_window_size = 6  # Fenstergröße um den Mittelpunkt in jede Richtung
+targeting_window_size = 6  
 
-# Funktion zum Schließen der Fenster
+
 def close_windows(event=None):
     root.destroy()
     safe_root.destroy()
     targeting_root.destroy()
 
-# Tkinter-Fenster einrichten
-root = tk.Tk()
-root.overrideredirect(True)  # Entfernt die Fensterrahmen und die Titelleiste
-root.attributes("-alpha", 0.1)  # Setzen Sie die Transparenz des Fensters (0 ist vollständig transparent, 1 ist undurchsichtig)
 
-# Die Größe des Tkinter-Fensters basierend auf den Koordinaten des Rahmens festlegen
+root = tk.Tk()
+root.overrideredirect(True)  
+root.attributes("-alpha", 0.1) 
+
+
 window_width = end_x - start_x
 window_height = end_y - start_y
 root.geometry(f"{window_width}x{window_height}+{start_x}+{start_y}")
 
-# Ein Canvas hinzufügen
 canvas = tk.Canvas(root, width=window_width, height=window_height, highlightthickness=0)
 canvas.pack()
 
-# Funktion zum Zeichnen des Rahmens
+
 def draw_rectangle(start_x, start_y, end_x, end_y):
     canvas.create_rectangle(0, 0, end_x - start_x, end_y - start_y, outline="red", width=3, fill="red")
 
-# Den Rahmen zeichnen
 draw_rectangle(start_x, start_y, end_x, end_y)
 
-# Tkinter-Fenster für den Safespot einrichten
-safe_root = tk.Tk()
-safe_root.overrideredirect(True)  # Entfernt die Fensterrahmen und die Titelleiste
-safe_root.attributes("-alpha", 0.5)  # Setzen Sie die Transparenz des Fensters (0 ist vollständig transparent, 1 ist undurchsichtig)
 
-# Die Größe des Tkinter-Fensters für den Safespot festlegen
+safe_root = tk.Tk()
+safe_root.overrideredirect(True)  
+safe_root.attributes("-alpha", 0.5)  
+
+
 safe_root.geometry(f"{safe_window_size}x{safe_window_size}+{safe_x-safe_window_size//2}+{safe_y-safe_window_size//2}")
 
-# Ein Canvas für den Safespot hinzufügen
+
 safe_canvas = tk.Canvas(safe_root, width=safe_window_size, height=safe_window_size, highlightthickness=0)
 safe_canvas.pack()
 
-# Funktion zum Zeichnen des Safespot-Rahmens
 def draw_safe_rectangle():
     safe_canvas.create_rectangle(0, 0, safe_window_size, safe_window_size, outline="red", width=3, fill="red")
 
-# Den Safespot-Rahmen zeichnen
+
 draw_safe_rectangle()
 
-# Tkinter-Fenster für den Targeting-Bereich einrichten
-targeting_root = tk.Tk()
-targeting_root.overrideredirect(True)  # Entfernt die Fensterrahmen und die Titelleiste
-targeting_root.attributes("-alpha", 0.5)  # Setzen Sie die Transparenz des Fensters (0 ist vollständig transparent, 1 ist undurchsichtig)
 
-# Die Größe des Tkinter-Fensters für den Targeting-Bereich festlegen
+targeting_root = tk.Tk()
+targeting_root.overrideredirect(True) 
+targeting_root.attributes("-alpha", 0.5)  
+
+
 targeting_root.geometry(f"{targeting_window_size}x{targeting_window_size}+{targeting_x-targeting_window_size//2}+{targeting_y-targeting_window_size//2}")
 
-# Ein Canvas für den Targeting-Bereich hinzufügen
+
 targeting_canvas = tk.Canvas(targeting_root, width=targeting_window_size, height=targeting_window_size, highlightthickness=0)
 targeting_canvas.pack()
 
-# Funktion zum Zeichnen des Targeting-Rahmens
+
 def draw_targeting_rectangle():
     targeting_canvas.create_rectangle(0, 0, targeting_window_size, targeting_window_size, outline="red", width=3, fill="red")
 
-# Den Targeting-Rahmen zeichnen
+
 draw_targeting_rectangle()
 
-# Tastendruck zum Schließen der Fenster binden
+
 root.bind("<Key>", close_windows)
 safe_root.bind("<Key>", close_windows)
 targeting_root.bind("<Key>", close_windows)
 
 root.mainloop()
 
-# Image Path
+
 image_paths = ['img/neut_4k.png', 'img/red_4k.png', 'img/-5_1440p.png', 'img/-10_1440p.png', 
                'img/neut_1080p.png', 'img/red_1080p.png', 'img/-5_1080p.png', 'img/-5_1440p.png', 
                'img/-10_1080p.png', 'img/-10_1440p.png', 'img/neut_1080p_red.png']  
 #image_paths = ['img/neut_1080p.png', 'img/red_1080p.png', 'img/-5.png', 'img/-10.png']
 
-# Confidence Lvl - Laptop = 0.84 at 1080p, PC = 0.85 at 1440p
+
 confidence_level = 0.84 
 
 def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_y, confidence):
@@ -112,7 +109,7 @@ def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_
     return False
 
 def additional_thread_function():
-    random_interval = random.uniform(120, 130)
+    random_interval = random.uniform(70, 80)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     global additional_thread_running
     while additional_thread_running:
