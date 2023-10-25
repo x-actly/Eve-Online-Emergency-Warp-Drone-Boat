@@ -9,15 +9,15 @@ alarm_played = False
 additional_thread_running = True
 
 # Detection Area
-start_x, start_y = 59, 79
-end_x, end_y = 266, 994
+start_x, start_y = 368, 726
+end_x, end_y = 527, 1325
 
 # safespot
-safe_x, safe_y = 1165, 243      
+safe_x, safe_y = 2290, 353    
 safe_window_size = 6  
 
 # targeting spot
-targeting_x, targeting_y = 1075, 668
+targeting_x, targeting_y = 1509, 1012
 targeting_window_size = 6  
 
 
@@ -96,7 +96,7 @@ image_paths = ['img/neut_4k.png', 'img/red_4k.png', 'img/-5_1440p.png', 'img/-10
 #image_paths = ['img/neut_1080p.png', 'img/red_1080p.png', 'img/-5.png', 'img/-10.png']
 
 
-confidence_level = 0.84 
+confidence_level = 0.85 
 
 def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_y, confidence):
     search_region = (start_x, start_y, end_x - start_x, end_y - start_y)
@@ -109,7 +109,7 @@ def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_
     return False
 
 def additional_thread_function():
-    random_interval = random.uniform(70, 80)
+    random_interval = random.uniform(45, 55)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     global additional_thread_running
     while additional_thread_running:
