@@ -9,15 +9,15 @@ alarm_played = False
 additional_thread_running = True
 
 # Detection Area
-start_x, start_y = 368, 726
-end_x, end_y = 527, 1325
+start_x, start_y = 57, 75
+end_x, end_y = 257, 941
 
 # safespot
-safe_x, safe_y = 2290, 353    
+safe_x, safe_y = 1113, 232  
 safe_window_size = 6  
 
 # targeting spot
-targeting_x, targeting_y = 1509, 1012
+targeting_x, targeting_y = 1074, 689
 targeting_window_size = 6  
 
 
@@ -109,7 +109,7 @@ def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_
     return False
 
 def additional_thread_function():
-    random_interval = random.uniform(45, 55)
+    random_interval = random.uniform(35, 40)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     global additional_thread_running
     while additional_thread_running:
@@ -151,5 +151,14 @@ while True:
             break
     except KeyboardInterrupt:
         print("Keyboard interruption detected. Exiting the program.")
+        pyautogui.moveTo(targeting_x, targeting_y)
+        time.sleep(1)
+        pyautogui.click(button="left")
+        time.sleep(1)
+        pyautogui.click(button="left")
+        pyautogui.keyDown('shift')
+        pyautogui.press('r')
+        time.sleep(1)
+        pyautogui.keyUp('shift')
         additional_thread_running = False
         break

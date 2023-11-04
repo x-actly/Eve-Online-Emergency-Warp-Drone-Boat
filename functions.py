@@ -37,7 +37,7 @@ def emergency_warp(x, y):
     y_offset_warp = random.randint(-51,-49)
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
-    # warp to belt
+    
     for i in range(1):
 
 
