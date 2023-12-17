@@ -5,8 +5,7 @@ import pyautogui
 
 def targeting(x, y):
 
-    # reset target
-    print("reset_test") 
+    # reset target 
     pyautogui.moveTo(x, y)
     pyautogui.keyDown('ctrl')
     pyautogui.keyDown('shift')
@@ -17,7 +16,6 @@ def targeting(x, y):
     pyautogui.keyUp('shift')
     time.sleep(1)
     # targeting
-    print("targeting_test")
     pyautogui.moveTo(x, y)
     pyautogui.keyDown('ctrl')
     pyautogui.click(button='left')
