@@ -101,21 +101,24 @@ confidence_level = 0.85
 def find_and_execute(image_paths, action_function, start_x, start_y, end_x, end_y, confidence):
     search_region = (start_x, start_y, end_x - start_x, end_y - start_y)
     for image_path in image_paths:
-        position = pyautogui.locateOnScreen(image_path, region=search_region, confidence=confidence)
-
-        if position is not None:
-            action_function()
-            return True
+        try:
+            position = pyautogui.locateOnScreen(image_path, region=search_region, confidence=confidence)
+            if position is not None:
+                action_function()
+                return True
+        except pyautogui.ImageNotFoundException:
+            print(f"DEBUG - {image_path} - not found.")
     return False
 
+
 def additional_thread_function():
-    random_interval = random.uniform(35, 40)
+    random_interval = random.uniform(50, 60)
     current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     global additional_thread_running
     while additional_thread_running:
         
         time.sleep(random_interval)
-        print(f"{current_time} - targeting")
+        print(f"DEBUG - {current_time} - targeting")
         targeting(targeting_x, targeting_y)
 
 
@@ -144,7 +147,9 @@ while True:
         random_interval = random.uniform(1, 2)
         found = find_and_execute(image_paths, perform_action, start_x, start_y, end_x, end_y, confidence_level)
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')  
-        print(f"{current_time} - local clear")
+        print("")
+        print(f"DEBUG - {current_time} - local clear")
+        print("")
         time.sleep(random_interval)
         if found:
             additional_thread_running = False
