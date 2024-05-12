@@ -21,102 +21,107 @@ safe_window_size = 6
 targeting_x, targeting_y = 1074, 689
 targeting_window_size = 6
 
-
-def close_windows(event=None):
-    root.destroy()
-    safe_root.destroy()
-    targeting_root.destroy()
-    # exit program completely
-    os._exit(0)
-
-
-root = tk.Tk()
-root.overrideredirect(True)
-root.attributes("-alpha", 0.1)
-
-window_width = end_x - start_x
-window_height = end_y - start_y
-root.geometry(f"{window_width}x{window_height}+{start_x}+{start_y}")
-
-canvas = tk.Canvas(root, width=window_width, height=window_height, highlightthickness=0)
-canvas.pack()
+def start_ui():
+    def close_windows(event=None):
+        root.destroy()
+        safe_root.destroy()
+        targeting_root.destroy()
+        # exit program completely
+        os._exit(0)
 
 
-def draw_rectangle(start_x, start_y, end_x, end_y):
-    canvas.create_rectangle(
-        0, 0, end_x - start_x, end_y - start_y, outline="red", width=3, fill="red"
+    root = tk.Tk()
+    root.wm_attributes("-topmost", 1)
+    root.overrideredirect(True)
+    root.attributes("-alpha", 0.1)
+
+    window_width = end_x - start_x
+    window_height = end_y - start_y
+    root.geometry(f"{window_width}x{window_height}+{start_x}+{start_y}")
+
+    canvas = tk.Canvas(root, width=window_width, height=window_height, highlightthickness=0)
+    canvas.pack()
+
+
+    def draw_rectangle(start_x, start_y, end_x, end_y):
+        canvas.create_rectangle(
+            0, 0, end_x - start_x, end_y - start_y, outline="red", width=3, fill="red"
+        )
+
+
+    draw_rectangle(start_x, start_y, end_x, end_y)
+
+
+    safe_root = tk.Tk()
+    safe_root.wm_attributes("-topmost", 1)
+    safe_root.overrideredirect(True)
+    safe_root.attributes("-alpha", 0.5)
+
+
+    safe_root.geometry(
+        f"{safe_window_size}x{safe_window_size}+{safe_x-safe_window_size//2}+{safe_y-safe_window_size//2}"
     )
 
 
-draw_rectangle(start_x, start_y, end_x, end_y)
+    safe_canvas = tk.Canvas(
+        safe_root, width=safe_window_size, height=safe_window_size, highlightthickness=0
+    )
+    safe_canvas.pack()
 
 
-safe_root = tk.Tk()
-root.wm_attributes("-topmost", 1)
-safe_root.overrideredirect(True)
-safe_root.attributes("-alpha", 0.5)
+    def draw_safe_rectangle():
+        safe_canvas.create_rectangle(
+            0, 0, safe_window_size, safe_window_size, outline="red", width=3, fill="red"
+        )
 
 
-safe_root.geometry(
-    f"{safe_window_size}x{safe_window_size}+{safe_x-safe_window_size//2}+{safe_y-safe_window_size//2}"
-)
+    draw_safe_rectangle()
 
 
-safe_canvas = tk.Canvas(
-    safe_root, width=safe_window_size, height=safe_window_size, highlightthickness=0
-)
-safe_canvas.pack()
+    targeting_root = tk.Tk()
+    targeting_root.wm_attributes("-topmost", 1)
+    targeting_root.overrideredirect(True)
+    targeting_root.attributes("-alpha", 0.5)
 
 
-def draw_safe_rectangle():
-    safe_canvas.create_rectangle(
-        0, 0, safe_window_size, safe_window_size, outline="red", width=3, fill="red"
+    targeting_root.geometry(
+        f"{targeting_window_size}x{targeting_window_size}+{targeting_x-targeting_window_size//2}+{targeting_y-targeting_window_size//2}"
     )
 
 
-draw_safe_rectangle()
-
-
-targeting_root = tk.Tk()
-targeting_root.overrideredirect(True)
-targeting_root.attributes("-alpha", 0.5)
-
-
-targeting_root.geometry(
-    f"{targeting_window_size}x{targeting_window_size}+{targeting_x-targeting_window_size//2}+{targeting_y-targeting_window_size//2}"
-)
-
-
-targeting_canvas = tk.Canvas(
-    targeting_root,
-    width=targeting_window_size,
-    height=targeting_window_size,
-    highlightthickness=0,
-)
-targeting_canvas.pack()
-
-
-def draw_targeting_rectangle():
-    targeting_canvas.create_rectangle(
-        0,
-        0,
-        targeting_window_size,
-        targeting_window_size,
-        outline="red",
-        width=3,
-        fill="red",
+    targeting_canvas = tk.Canvas(
+        targeting_root,
+        width=targeting_window_size,
+        height=targeting_window_size,
+        highlightthickness=0,
     )
+    targeting_canvas.pack()
 
 
-draw_targeting_rectangle()
+    def draw_targeting_rectangle():
+        targeting_canvas.create_rectangle(
+            0,
+            0,
+            targeting_window_size,
+            targeting_window_size,
+            outline="red",
+            width=3,
+            fill="red",
+        )
 
 
-root.bind("<Key>", close_windows)
-safe_root.bind("<Key>", close_windows)
-targeting_root.bind("<Key>", close_windows)
+    draw_targeting_rectangle()
 
-root.mainloop()
 
+    root.bind("<Key>", close_windows)
+    safe_root.bind("<Key>", close_windows)
+    targeting_root.bind("<Key>", close_windows)
+
+    root.mainloop()
+
+
+tkinter_thread = threading.Thread(target=start_ui)
+tkinter_thread.start()
 
 image_paths = [
     "img/neut_4k.png",
@@ -159,16 +164,13 @@ def additional_thread_function():
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     global additional_thread_running
     while additional_thread_running:
-
         time.sleep(random_interval)
         print(f"DEBUG - {current_time} - targeting")
         targeting(targeting_x, targeting_y)
 
-
 additional_thread = threading.Thread(target=additional_thread_function)
 additional_thread.daemon = True
 additional_thread.start()
-
 
 def perform_action():
     global alarm_played
@@ -184,7 +186,6 @@ def perform_action():
         emergency_warp(safe_x, safe_y)
 
     sys.exit()
-
 
 while True:
     try:
@@ -218,4 +219,4 @@ while True:
         time.sleep(1)
         pyautogui.keyUp("shift")
         additional_thread_running = False
-        break
+        os._exit(0)
